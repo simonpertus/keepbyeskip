@@ -1,20 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <div class="container">
+    <div class="content" style="display: initial;">
+      <div class="logo">
+        <img src="assets/img/logo-keep.png" class="logo-img logo-keep" alt="Keep">
+        <img src="assets/img/logo-bye.png" class="logo-img logo-bye" alt="Bye">
+        <img src="assets/img/logo-skip.png" class="logo-img logo-skip" alt="Skip">
+      </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+      <div class="buttons-group two-buttons hide">
+        <div id="button-start" class="custom-button animated-button" (click)="startGame()">
+          <img src="assets/buttons/button-start.png">
+        </div>
+        <div class="custom-button animated-button" (click)="showRules()">
+          <img src="assets/buttons/button-rules.png">
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>

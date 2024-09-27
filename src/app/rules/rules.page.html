@@ -1,0 +1,158 @@
+<ion-content>
+  <div class="container">
+    <div class="custom-button nav-back" (click)="goHome()">
+      <img src="assets/img/nav-arrow.png" alt="Back" class="custom-arrow-icon">
+    </div>
+    <div class="content">
+      <div class="rules-title">
+        <h1>LES RÈGLES</h1>
+      </div>
+      <swiper-container  #swiper [pagination]="true" [navigation]="true" class="swiper-rules">
+        <!-- Slide 1 -->
+        <swiper-slide>
+          <div class="rule-card">
+            <h2>INTRO</h2>
+            <div>
+              <p>
+                Keep Bye Skip est un jeu de soirée unique ! Le but est simple, vous devez être le dernier à survivre aux
+                duels.
+              </p>
+              <p>
+                Tous les joueurs sont des <span class="highlight-red">challengers</span>, celui qui provoque le duel est
+                un <span class="highlight-red">provocateur</span>, celui qui subit le duel est une <span
+                  class="highlight-red">cible</span>.
+              </p>
+              <p>
+                Une partie compte plusieurs tours, chaque tour est composée de plusieurs phases : la <span
+                  class="highlight-blue">décision</span>, le <span class="highlight-blue">duel</span> et la <span
+                  class="highlight-blue">révélation</span>.
+              </p>
+            </div>
+          </div>
+        </swiper-slide>
+
+        <!-- Slide 2 -->
+        <swiper-slide>
+          <div class="rule-card">
+            <h2>1 - LA DÉCISION</h2>
+            <div>
+              <p>
+                À chaque tour, le téléphone est tenu par un <span class="highlight-red">challenger</span>. S'affiche sur
+                l'écran une carte "KEEP" ou une carte "BYE".
+              </p>
+              <p>
+                Le <span class="highlight-red">challenger</span> décide d'utiliser un "SKIP" ou de lancer un duel.
+              </p>
+              <p>
+                S'il appuie sur "SKIP", il passe le téléphone au <span class="highlight-red">challenger</span> sur sa
+                gauche.
+              </p>
+            </div>
+          </div>
+        </swiper-slide>
+
+        <!-- Slide 3 -->
+        <swiper-slide>
+          <div class="rule-card">
+            <h2>1 - LA DÉCISION</h2>
+            <div>
+              <p>
+                Un nombre aléatoire de "SKIP" est disponible par partie, ce nombre est inconnu de tous.
+              </p>
+              <p>
+                Si le téléphone fait un tour complet : le dernier <span class="highlight-red">challenger</span> élimine
+                le joueur de son choix.
+              </p>
+              <p>
+                Si le <span class="highlight-red">challenger</span> provoque un duel en appuyant sur "DUEL", il devient
+                le <span class="highlight-red">provocateur</span> du duel. Le joueur à sa gauche devient la <span
+                  class="highlight-red">cible</span>.
+              </p>
+            </div>
+          </div>
+        </swiper-slide>
+
+        <!-- Slide 4 -->
+        <swiper-slide>
+          <div class="rule-card">
+            <h2>2 - LE DUEL - KEEP</h2>
+            <div>
+              <p>
+                Le <span class="highlight-red">provocateur</span> sait s'il a la carte "KEEP" ou "BYE". Il doit
+                convaincre la <span class="highlight-red">cible</span> de prendre ou non le téléphone.
+              </p>
+              <p>
+                Si c'est la carte "KEEP", le <span class="highlight-red">provocateur</span> doit tout faire pour la
+                garder et convaincre la <span class="highlight-red">cible</span> de ne pas prendre le téléphone.
+              </p>
+              <p>
+                À la fin, celui qui a le téléphone remporte le duel.
+              </p>
+            </div>
+          </div>
+        </swiper-slide>
+
+        <!-- Slide 5 -->
+        <swiper-slide>
+          <div class="rule-card">
+            <h2>2 - LE DUEL - BYE</h2>
+            <div>
+              <p>
+                Le <span class="highlight-red">provocateur</span> sait s'il a la carte "KEEP" ou "BYE". Il doit
+                convaincre
+                la <span class="highlight-red">cible</span> de prendre ou non le téléphone.
+              </p>
+              <p>
+                Si c'est la carte "BYE", le <span class="highlight-red">provocateur</span> doit tout faire pour la
+                lâcher
+                et convaincre la <span class="highlight-red">cible</span> de prendre le téléphone.
+              </p>
+              <p>
+                À la fin, celui qui n'a pas le téléphone remporte le duel.
+              </p>
+            </div>
+          </div>
+        </swiper-slide>
+
+        <!-- Slide 6 -->
+        <swiper-slide>
+          <div class="rule-card">
+            <h2>2 - LE DUEL - TWIST</h2>
+            <div>
+              <p>
+                Quand un duel est provoqué, un "TWIST" peut bouleverser le déroulement du duel.
+              </p>
+              <p>
+                C'est une nouvelle règle qui doit être lue à voix haute (sauf si le contraire est spécifié).
+              </p>
+              <p>
+                Voici un exemple de "TWIST", le "Motus et bouche cousue" : Le <span
+                  class="highlight-red">provocateur</span> n'a pas le droit de parler pour convaincre la <span
+                  class="highlight-red">cible</span> de prendre ou refuser le téléphone.
+              </p>
+            </div>
+          </div>
+        </swiper-slide>
+
+        <!-- Slide 7 -->
+        <swiper-slide>
+          <div class="rule-card">
+            <h2>3 - LA RÉVÉLATION</h2>
+            <div>
+              <p>
+                Quand un duel est terminé, celui qui possède le téléphone appuie sur le bouton "RÉVÉLATION".
+              </p>
+              <p>
+                Il montre le résultat à tous les joueurs et appuie sur le bouton "NOUVELLE PHASE".
+              </p>
+              <p>
+                Une nouvelle phase de jeu débute et le nouveau <span class="highlight-red">challenger</span> doit
+                prendre la décision de provoquer un duel ou d'utiliser un "SKIP".
+              </p>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </div>
+</ion-content>

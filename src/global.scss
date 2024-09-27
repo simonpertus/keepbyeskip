@@ -34,4 +34,166 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+//@import "@ionic/angular/css/palettes/dark.system.css";
+
+@font-face {
+  font-family: "FrankfurterNormal";
+  src: url("assets/fonts/frankfurter-std-regular.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "FrankfurterMedium";
+  src: url("assets/fonts/frankfurter-medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "HammersmithOne";
+  src: url("assets/fonts/hammersmith-one-Regular.ttf") format("truetype");
+}
+
+
+body,p {
+  font-family: "HammersmithOne", sans-serif;
+}
+
+h1,h2{
+  font-family: "FrankfurterMedium", sans-serif;
+}
+
+ion-content {
+  --background: radial-gradient(circle at 0% 0%, #27d8ff, #006cb3);
+  height: 100%;
+  color:black;
+}
+
+html.md{
+  --ion-default-font: "HammersmithOne", sans-serif;
+}
+
+.container {
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttons-group.two-buttons {
+  .custom-button {
+    width: 48%;
+  }
+}
+
+.buttons-group.hide {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.buttons-group {
+  opacity: 1;
+  display: flex;
+  justify-content: center; /* Centre les boutons ensemble */
+  gap: 15px; /* Ajoute un espace entre les boutons */
+  transform: scale(1);
+  transition:
+    opacity 0.6s ease-in-out,
+    transform 0.6s ease-in-out;
+    max-width: 98%;
+    margin: auto;
+
+  .custom-button {
+    display: block;
+    width: 100%;
+    padding: 20px 10px;
+    margin-bottom: 20px;
+    background-color: #41b9ff;
+    color: #000000;
+    text-align: center;
+    border-radius: 48px;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-family: "FrankfurterMedium", sans-serif;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition:
+      background-color 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+
+/*.custom-button {
+  animation: pulse 6s infinite;
+}
+*/
+
+.page-enter {
+  animation: slideInRight 0.5s forwards;
+}
+
+.page-leave {
+  animation: slideOutLeft 0.5s forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.nav-back{
+  
+    max-width: 50px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+img{
+  transform:  scaleX(-1);
+}
+
+}
+
+.custom-button.animated-button {
+  transform: translateY(0) translateX(0);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.custom-button.animated-button.active {
+  transform: translateY(3px) translateX(3px);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
+}

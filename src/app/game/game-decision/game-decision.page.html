@@ -1,0 +1,38 @@
+<ion-content>
+  <div class="container">
+    <div class="custom-button nav-back" (click)="goHome()">
+      <img src="assets/img/nav-arrow.png" alt="Back" class="custom-arrow-icon">
+    </div>
+    <div class="content">
+      <img src="assets/title/title-ladecision.png" class="title-ladecision">
+
+      <div class="card card-{{decision}}">
+        <img src="assets/card/card-{{decision}}.png" alt="Back" class="card-title">
+        <p class="card-description">{{description}}</p>
+      </div>
+
+      <div class="actions-game">
+        <div id="button-skip"
+          class="button button-skip custom-button animated-button"
+          *ngIf="skipsRemaining > 0; else skipUnavailable">
+          <div (click)="onSkip()">
+            <img src="assets/buttons/button-skip.png">
+          </div>
+        </div>
+
+        <ng-template #skipUnavailable>
+          <div class="skip-unavailable">
+            <img src="assets/buttons/button-skip.png">
+            <p>INDISPONIBLE</p>
+          </div>
+        </ng-template>
+
+        <div id="button-duel"
+          class="button button-duel custom-button animated-button"
+          (click)="onDuel()">
+          <img src="assets/buttons/button-duel.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

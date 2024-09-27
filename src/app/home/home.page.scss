@@ -1,27 +1,37 @@
-#container {
-  text-align: center;
+.logo {
+  margin-bottom: 60px;
+  max-width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+}
 
+.logo-img {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+    height: 300px;
+    width: auto;
+    opacity: 0; /* Initialement invisible */
+    transform: scale(0.8); /* Initialement plus petit */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Assure une transition fluide */
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.logo-img-show{
+  display : block;
+  opacity : 1;
+  transform : scale(1);
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.logo-img-animate {
+  animation: zoomAnimation 5s ease-in-out infinite;
 }
 
-#container a {
-  text-decoration: none;
+@keyframes zoomAnimation {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02); /* Zoom léger */
+  }
 }
+
+ 

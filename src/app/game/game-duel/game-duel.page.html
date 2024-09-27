@@ -1,0 +1,38 @@
+<ion-content>
+  <div class="container">
+    <div class="custom-button nav-back" (click)="goHome()">
+      <img src="assets/img/nav-arrow.png" alt="Back" class="custom-arrow-icon">
+    </div>
+    <div class="content">
+      <img src="assets/title/title-leduel.png" class="title-duel">
+
+      <div class="card card-{{decision}}">
+        <img src="assets/card/card-{{decision}}.png" alt="Back"
+          class="card-title">
+        <p class="card-description">{{description}}</p>
+      </div>
+      <!-- Afficher le twist uniquement s'il y en a un -->
+      <div class="twist-card" *ngIf="twist">
+        <img src="assets/title/title-twist.png">
+        <div class="twist-emoji">{{ twist.emoji }}</div>
+        <h3 class="twist-title">{{ twist.title }}</h3>
+        <p class="twist-description">{{ twist.description }}</p>
+
+      </div>
+
+      <div class="twist-card" *ngIf="!twist">
+        <img src="assets/title/title-twist.png">
+        <div class="twist-emoji">😒</div>
+        <h3 class="twist-title">Partie classique</h3>
+        <p class="twist-description">Parfois, le twist, c'est qu'il n'y en pas. Tu peux le dire ou le garder pour toi.</p>
+      </div>
+
+      <div class="actions-game">
+        <div id="button-reveal"
+          class="button button-reveal custom-button animated-button">
+          <img src="assets/buttons/button-reveal.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,93 @@
+.game-container {
+    text-align: center;
+}
+
+.card {
+    background-color: white;
+    border-radius: 0px;
+    padding: 40px 10px 10px;
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.25);
+    margin: 50px auto;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        max-width: 300px;
+        margin: auto;
+        transform: rotate(-10deg);
+        margin-bottom: -10px;
+    }
+    p{
+        max-width: 280px;
+        text-align: center;
+        padding-top: 50px;
+        font-size: 1.05em;
+    }
+}
+
+.card.card-bye {
+    background-color: black;
+    p{
+        color:white;
+    }
+}
+.actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.skip-unavailable {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    img{
+        width: 100px;
+    }
+
+    p {
+        margin: 0px;
+        font-size: 0.9em;
+        color: #000000;
+        text-align: center;
+    }
+}
+
+.actions-game {
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+
+    .button {
+        border-radius: 99px;
+        padding: 10px 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .button-skip {
+        background-color: #ff3131;
+        img {
+            max-height: 40px;
+            height: auto;
+            width: auto;
+            margin-top: 2px;
+        }
+    }
+    .button-duel {
+        background-color: #41b9ff;
+        img {
+            max-height: 40px;
+            height: auto;
+            width: auto;
+        }
+    }
+}
+
+img.title-ladecision {
+    max-width: 400px;
+    width: 100%;
+}
