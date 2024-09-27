@@ -51,7 +51,9 @@
   src: url("assets/fonts/hammersmith-one-Regular.ttf") format("truetype");
 }
 
-
+body{
+  background: radial-gradient(circle at 0% 0%, #27d8ff, #006cb3);
+}
 body,p {
   font-family: "HammersmithOne", sans-serif;
 }

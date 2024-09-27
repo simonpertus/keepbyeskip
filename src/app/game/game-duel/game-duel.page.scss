@@ -90,6 +90,23 @@ div.twist-card{
     align-items: center;
     margin-bottom: 30px;
 
+    p.twist-reveal{
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 30px;
+       
+        padding: 5px 15px;
+        border-radius: 5px;
+    }
+    p.twist-reveal-none{
+        background: #000000;
+        color: white;
+    }
+    p.twist-reveal-all{
+        color: #000000;
+        background: white;
+    }
+    
     img{
         max-width: 150px;
         z-index: 1;
@@ -98,7 +115,7 @@ div.twist-card{
         position: absolute;
         z-index: 0;
         font-size: 70px;
-        margin-top: -30px;
+        margin-top: 55px;
         margin-right: -180px;
         transform: rotate(-15deg);
     }
