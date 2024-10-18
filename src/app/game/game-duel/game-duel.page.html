@@ -32,20 +32,28 @@
       </div>
       
       <div class="actions-game">
-        <div class="roulette-russe" *ngIf="twist.id==='roulette-russe' && oneTime">
-          <p *ngIf="bullet">PAN ! 💥</p>
-          <p *ngIf="!bullet">Clic... 😌</p>
+        <div class="roulette-russe" *ngIf="twist.id==='roulette-russe'">
+          <div *ngIf="!oneTime"></div>
+          <div *ngIf="bullet && oneTime"><img src="assets/img/rs-pan.png"></div>
+          <div *ngIf="!bullet && oneTime"><img src="assets/img/rs-clic.png"></div>
         </div>
-        <button *ngIf="twist.id==='roulette-russe' && !showReveal" (click)="shoot()" class="button button-reveal custom-button animated-button">
+        <button id="button-shoot" *ngIf="twist.id==='roulette-russe' && !showReveal" (click)="shoot()" class="button button-reveal custom-button animated-button">
           <img src="assets/buttons/button-shoot.png">
         </button>
-          <button *ngIf="twist.id==='compte-a-rebours' && !timerRunning && !showReveal" (click)="startTimer()" class="button button-reveal custom-button animated-button">
+          <button id="button-start-timer" *ngIf="twist.id==='compte-a-rebours' && !timerRunning && !showReveal" (click)="startTimer()" class="button button-reveal custom-button animated-button">
             <img src="assets/buttons/button-start2.png">
           </button>
-          <div class="compte-a-rebours" *ngIf="twist.id==='compte-a-rebours' && timerRunning && !showReveal">
+          <div class="compte-a-rebours"  *ngIf="twist.id==='compte-a-rebours' && timerRunning">
             <p>{{  displayTime }}</p>
           </div>
-        <div *ngIf="showReveal" id="button-reveal" class="button button-reveal custom-button animated-button">
+          <div *ngIf="twist.id==='la-paix' || twist.id==='lies-jusqua-la-mort'" id="button-cancel" 
+          class="button button-reveal custom-button animated-button" (click)="goCancel()">
+            <img src="assets/buttons/button-cancel.png">
+          </div>
+          <div *ngIf="twist.id==='inversion' && !showReveal" id="button-newcard" class="button button-reveal custom-button animated-button" (click)="generateRandomDecisionAfterInversion()">
+            <img src="assets/buttons/button-newcard.png">
+          </div>
+        <div *ngIf="showReveal" id="button-reveal" class="button button-reveal custom-button animated-button" (click)="goReveal()">
           <img src="assets/buttons/button-reveal.png">
         </div>
       </div>

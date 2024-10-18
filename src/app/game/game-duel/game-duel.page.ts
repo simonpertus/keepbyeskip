@@ -13,7 +13,7 @@ export class GameDuelPage implements OnInit {
   public description: string = 'Lors du duel, tu dois tout faire pour garder le téléphone à la fin.';
   public twist: any;
   public showReveal: boolean = true;
-  public oneTime:boolean = false;
+  public oneTime: boolean = false;
 
   // Variables pour le twist Compte à rebours
   public timeLeft: number = 3000; // 30 secondes en centièmes de seconde
@@ -30,6 +30,15 @@ export class GameDuelPage implements OnInit {
   constructor(private router: Router, private aus: AppUtilsService, private route: ActivatedRoute, private twistService: TwistService) { }
 
   ngOnInit() {
+    this.timeLeft = 3000;
+    this.timerRunning = false;
+    this.displayTime = '00:00:00'; 
+
+    this.bullet = false;
+    this.basePanChance = 0.05;  // Chance initiale de "PAN" (5 %)
+    this.panChance = this.basePanChance;  // Chance actuelle de "PAN"
+    this.shotsTaken = 0;  // Compteur de tirs
+  
     // Récupérer la décision passée en tant que paramètre
     this.route.queryParams.subscribe(params => {
       this.decision = this.aus.getDecision();
@@ -37,29 +46,35 @@ export class GameDuelPage implements OnInit {
         this.description = 'Lors du duel, tu dois tout faire pour donner le téléphone à la fin.';
       }
     });
-    
+
     // Obtenir le twist
-    this.twist = this.twistService.getRandomTwist('roulette-russe');
+    this.twist = { ...this.twistService.getRandomTwist('compte-a-rebours') };
 
     // Si le twist est Compte à rebours, cacher le bouton Révéler
-    if (this.twist.id === 'compte-a-rebours' || this.twist.id === 'roulette-russe') {
+    if (this.twist.id === 'compte-a-rebours' || this.twist.id === 'roulette-russe' || this.twist.id === 'inversion'
+      || this.twist.id === 'lies-jusqua-la-mort'
+    ) {
       this.showReveal = false;
     }
   }
 
   // Méthode pour démarrer le chrono
   startTimer() {
-    this.timerRunning = true;
-    this.interval = setInterval(() => {
-      if (this.timeLeft > 0) {
-        this.timeLeft--;
-        this.updateDisplayTime();
-      } else {
-        this.timerRunning = false;
-        clearInterval(this.interval);
-        this.showReveal = true; // Afficher le bouton Révéler quand le temps est écoulé
-      }
-    }, 10); // Intervalle de 10ms pour les centièmes de seconde
+    this.aus.animateButton('button-start-timer');
+    setTimeout(() => {
+      this.timerRunning = true;
+      this.showReveal = true; // Afficher le bouton Révéler quand le temps est écoulé
+      this.interval = setInterval(() => {
+        if (this.timeLeft > 0) {
+          this.timeLeft--;
+          this.updateDisplayTime();
+        } else {
+          this.timerRunning = false;
+          clearInterval(this.interval);
+          
+        }
+      }, 10); // Intervalle de 10ms pour les centièmes de seconde
+    }, 400);
   }
 
   // Mettre à jour l'affichage du temps restant
@@ -77,19 +92,22 @@ export class GameDuelPage implements OnInit {
   }
 
   shoot() {
-    this.shotsTaken++;  // Incrémenter le nombre de tirs
-    this.oneTime = true;
-    const randomChance = Math.random();  // Renvoie un nombre entre 0 et 1
+    this.aus.animateButton('button-shoot');
+    setTimeout(() => {
+      this.shotsTaken++;  // Incrémenter le nombre de tirs
+      this.oneTime = true;
+      const randomChance = Math.random();  // Renvoie un nombre entre 0 et 1
 
-    // Si randomChance <= 0.05 (5 % de chance), c'est "pan", sinon "clic"
-    if (randomChance <= this.panChance) {
-      this.bullet = true;  // Tir fatal
-      this.showReveal = true;
-    } 
-    // Tous les 3 tirs, augmenter la probabilité de "PAN" de 10 %
-    if (this.shotsTaken % 3 === 0) {
-      this.increasePanChance();
-    }
+      // Si randomChance <= 0.05 (5 % de chance), c'est "pan", sinon "clic"
+      if (randomChance <= this.panChance) {
+        this.bullet = true;  // Tir fatal
+        this.showReveal = true;
+      }
+      // Tous les 3 tirs, augmenter la probabilité de "PAN" de 10 %
+      if (this.shotsTaken % 3 === 0) {
+        this.increasePanChance();
+      }
+    }, 400);
   }
 
   // Augmente la probabilité de "PAN" de 10 %
@@ -100,11 +118,42 @@ export class GameDuelPage implements OnInit {
     if (this.panChance > 1) {
       this.panChance = 1;
     }
-    console.log(`Nouvelle probabilité de PAN: ${this.panChance * 100}%`);
+  }
+
+  // Méthode pour générer un choix aléatoire entre 'KEEP' et 'BYE'
+  generateRandomDecisionAfterInversion() {
+    this.aus.animateButton('newcard');
+    setTimeout(() => {
+      this.description = 'Lors du duel, tu dois tout faire pour garder le téléphone à la fin.';
+      const choices = ['keep', 'bye'];
+      const randomIndex = Math.floor(Math.random() * choices.length);
+      this.decision = choices[randomIndex]; // Stocker la décision dans une variable
+      if (this.decision === 'bye') {
+        this.description = 'Lors du duel, tu dois tout faire pour donner le téléphone à la fin.';
+      }
+      this.showReveal = true;
+      this.twist.card = true;
+    }, 400);
+
   }
 
   // Retour à la page d'accueil
   goHome() {
     this.router.navigate(['/home']);
+  }
+
+  goCancel() {
+    this.aus.animateButton('button-cancel');
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+    }, 400);
+
+  }
+  goReveal() {
+    this.aus.animateButton('button-reveal');
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+    }, 400);
+
   }
 }

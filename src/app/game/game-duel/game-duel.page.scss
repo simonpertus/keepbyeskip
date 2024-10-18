@@ -139,6 +139,27 @@ div.twist-card{
 
 .compte-a-rebours p{
     color: #ffd600;
-font-size: 36px;
+font-size: 32px;
 font-family: monospace;
+margin: 0;
+margin-top: -40px;
+}
+div.actions-game:has(.roulette-russe),
+div.actions-game:has(.compte-a-rebours){
+    flex-direction: column;
+}
+div.roulette-russe,
+div.compte-a-rebours{
+    width: 100%;
+    text-align: center;
+}
+div.roulette-russe div{
+    margin:0;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+}
+div.roulette-russe div img{
+    /*max-width: 200px;*/
+    height: auto;
 }

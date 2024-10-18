@@ -120,7 +120,7 @@ export class TwistService {
     {
       id: 'compte-a-rebours',
       title: 'Compte à rebours',
-      description: 'La cible dispose de 30 secondes pour décider de prendre ou non le téléphone. Si elle n’agit pas dans ce délai, la carte est révélée et la décision est prise.',
+      description: 'La cible a 30 secondes pour décider de prendre ou non le téléphone. Passé ce délai, la carte doit être révélée.',
       emoji: '⏳',
       card: true,
       revealTwist: true, // Obligatoire
@@ -128,7 +128,7 @@ export class TwistService {
     {
       id: 'lies-jusqua-la-mort',
       title: 'Liés jusqu\'à la mort',
-      description: 'Le duel est annulé et le provocateur et la cible sont liés au même destin jusqu\'à la fin de la partie.',
+      description: 'Le duel est annulé. Le provocateur et la cible sont liés au même destin jusqu\'à la fin de la partie.',
       emoji: '🤝',
       card: false,
       revealTwist: true, // Obligatoire
