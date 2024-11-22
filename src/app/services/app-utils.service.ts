@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AppUtilsService {
   private decision: string = 'keep';
+  private twist:any = null;
 
   constructor() { }
 
@@ -14,6 +15,14 @@ export class AppUtilsService {
 
   getDecision(): string {
     return this.decision;
+  }
+
+  setTwist(twist: any) {
+    this.twist = twist;
+  }
+
+  getTwist(): any {
+    return this.twist;
   }
   
   animateButton(buttonId: string) {

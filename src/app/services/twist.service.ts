@@ -82,7 +82,7 @@ export class TwistService {
       title: 'Le remplaçant',
       description: 'Le provocateur choisit un autre joueur pour le remplacer dans le duel.',
       emoji: '🫵',
-      card: true,
+      card: false,
       revealTwist: true, // Obligatoire
     },
     {
@@ -138,7 +138,7 @@ export class TwistService {
       title: 'Les gladiateurs',
       description: 'Le provocateur choisit un nouveau provocateur et une cible parmi les duellistes.',
       emoji: '🗡️',
-      card: true,
+      card: false,
       revealTwist: true, // Obligatoire
     }
   ];
@@ -154,7 +154,6 @@ export class TwistService {
     const randomChance = Math.random(); // Renvoie un nombre entre 0 et 1
 
     // Si randomChance est inférieur ou égal à 0.5, il n'y a pas de twist
-    console.log(randomChance);
     if (randomChance <= 0.5) {
       return null; // Pas de twist
     }

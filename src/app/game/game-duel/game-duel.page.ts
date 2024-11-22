@@ -32,27 +32,31 @@ export class GameDuelPage implements OnInit {
   ngOnInit() {
     this.timeLeft = 3000;
     this.timerRunning = false;
-    this.displayTime = '00:00:00'; 
+    this.displayTime = '00:00:00';
 
     this.bullet = false;
     this.basePanChance = 0.05;  // Chance initiale de "PAN" (5 %)
     this.panChance = this.basePanChance;  // Chance actuelle de "PAN"
     this.shotsTaken = 0;  // Compteur de tirs
-  
-    // Récupérer la décision passée en tant que paramètre
-    this.route.queryParams.subscribe(params => {
-      this.decision = this.aus.getDecision();
-      if (this.decision === 'bye') {
-        this.description = 'Lors du duel, tu dois tout faire pour donner le téléphone à la fin.';
-      }
-    });
+
+    // Récupérer la décision passée
+    this.decision = this.aus.getDecision();
+    if (this.decision === 'bye') {
+      this.description = 'Lors du duel, tu dois tout faire pour donner le téléphone à la fin.';
+    }
 
     // Obtenir le twist
-    this.twist = { ...this.twistService.getRandomTwist('compte-a-rebours') };
+    this.twist = { ...this.twistService.getRandomTwist() };
+    console.log(this.twist);
+    if (this.twist.id == undefined) {
+      this.twist = null;
+    }
+    this.aus.setTwist(this.twist);
 
     // Si le twist est Compte à rebours, cacher le bouton Révéler
-    if (this.twist.id === 'compte-a-rebours' || this.twist.id === 'roulette-russe' || this.twist.id === 'inversion'
-      || this.twist.id === 'lies-jusqua-la-mort'
+    if (this.twist && (this.twist.id === 'compte-a-rebours' || this.twist.id === 'roulette-russe' || this.twist.id === 'inversion'
+      || this.twist.id === 'lies-jusqua-la-mort' || this.twist.id === 'democratie' || this.twist.id === 'remplacant'
+      || this.twist.id === 'gladiateurs')
     ) {
       this.showReveal = false;
     }
@@ -71,7 +75,7 @@ export class GameDuelPage implements OnInit {
         } else {
           this.timerRunning = false;
           clearInterval(this.interval);
-          
+
         }
       }, 10); // Intervalle de 10ms pour les centièmes de seconde
     }, 400);
@@ -121,8 +125,8 @@ export class GameDuelPage implements OnInit {
   }
 
   // Méthode pour générer un choix aléatoire entre 'KEEP' et 'BYE'
-  generateRandomDecisionAfterInversion() {
-    this.aus.animateButton('newcard');
+  generateRandomDecision() {
+    this.aus.animateButton('button-newcard');
     setTimeout(() => {
       this.description = 'Lors du duel, tu dois tout faire pour garder le téléphone à la fin.';
       const choices = ['keep', 'bye'];
@@ -142,17 +146,31 @@ export class GameDuelPage implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  goNewTurn() {
+    this.aus.animateButton('button-end');
+    setTimeout(() => {
+      this.router.navigate(['/game-decision']);
+    }, 400);
+  }
+
   goCancel() {
     this.aus.animateButton('button-cancel');
     setTimeout(() => {
       this.router.navigate(['/home']);
     }, 400);
-
   }
+
+  goVote() {
+    this.aus.animateButton('button-vote');
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+    }, 400);
+  }
+
   goReveal() {
     this.aus.animateButton('button-reveal');
     setTimeout(() => {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/game-reveal']);
     }, 400);
 
   }
