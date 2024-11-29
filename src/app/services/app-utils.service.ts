@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class AppUtilsService {
   private decision: string = 'keep';
   private twist:any = null;
+  private cancelDuel:boolean = false;
 
   constructor() { }
 
@@ -15,6 +16,14 @@ export class AppUtilsService {
 
   getDecision(): string {
     return this.decision;
+  }
+
+  setCancelDuel(cancelDuel: boolean) {
+    this.cancelDuel = cancelDuel;
+  }
+
+  isCancelDuel(): boolean {
+    return this.cancelDuel;
   }
 
   setTwist(twist: any) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppUtilsService } from 'src/app/services/app-utils.service';
 import { TwistService } from 'src/app/services/twist.service';
@@ -8,7 +8,7 @@ import { TwistService } from 'src/app/services/twist.service';
   templateUrl: './game-duel.page.html',
   styleUrls: ['./game-duel.page.scss'],
 })
-export class GameDuelPage implements OnInit {
+export class GameDuelPage {
   public decision: string = 'keep';
   public description: string = 'Lors du duel, tu dois tout faire pour garder le téléphone à la fin.';
   public twist: any;
@@ -29,10 +29,12 @@ export class GameDuelPage implements OnInit {
 
   constructor(private router: Router, private aus: AppUtilsService, private route: ActivatedRoute, private twistService: TwistService) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.timeLeft = 3000;
     this.timerRunning = false;
     this.displayTime = '00:00:00';
+
+    this.aus.setCancelDuel(false);
 
     this.bullet = false;
     this.basePanChance = 0.05;  // Chance initiale de "PAN" (5 %)
@@ -47,7 +49,6 @@ export class GameDuelPage implements OnInit {
 
     // Obtenir le twist
     this.twist = { ...this.twistService.getRandomTwist() };
-    console.log(this.twist);
     if (this.twist.id == undefined) {
       this.twist = null;
     }
@@ -135,6 +136,7 @@ export class GameDuelPage implements OnInit {
       if (this.decision === 'bye') {
         this.description = 'Lors du duel, tu dois tout faire pour donner le téléphone à la fin.';
       }
+      this.aus.setDecision(this.decision);
       this.showReveal = true;
       this.twist.card = true;
     }, 400);
@@ -155,15 +157,16 @@ export class GameDuelPage implements OnInit {
 
   goCancel() {
     this.aus.animateButton('button-cancel');
+    this.aus.setCancelDuel(true);
     setTimeout(() => {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/game-reveal']);
     }, 400);
   }
 
   goVote() {
     this.aus.animateButton('button-vote');
     setTimeout(() => {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/game-reveal']);
     }, 400);
   }
 

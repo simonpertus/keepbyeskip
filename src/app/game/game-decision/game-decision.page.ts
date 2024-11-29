@@ -10,12 +10,15 @@ import { AppUtilsService } from 'src/app/services/app-utils.service';
 })
 export class GameDecisionPage {
 
-  public maxSkips: number;
-  public skipsRemaining: number;
+  public maxSkips: number = this.generateRandomSkips();
+  public skipsRemaining: number=0;
   public decision: string = 'keep';
   public description: string = 'Lors du duel, tu dois tout faire pour garder le téléphone à la fin.';
 
-  constructor(private router: Router, private aus: AppUtilsService) {
+  constructor(private router: Router, private aus: AppUtilsService) {}
+
+  ionViewWillEnter () {
+    //console.log('Initialisation de la décision');
     this.maxSkips = this.generateRandomSkips();
     this.skipsRemaining = this.maxSkips;
     this.generateRandomDecision();
@@ -31,15 +34,16 @@ export class GameDecisionPage {
     return Math.floor(Math.random() * 12) + 1;
   }
 
-    // Méthode pour générer un choix aléatoire entre 'KEEP' et 'BYE'
-    generateRandomDecision() {
-      const choices = ['keep', 'bye'];
-      const randomIndex = Math.floor(Math.random() * choices.length);
-      this.decision = choices[randomIndex]; // Stocker la décision dans une variable
-      if(this.decision==='bye'){
-        this.description = 'Lors du duel, tu dois tout faire pour donner le téléphone à la fin.';
-      }
+  // Méthode pour générer un choix aléatoire entre 'KEEP' et 'BYE'
+  generateRandomDecision() {
+    //console.log('Choix en cours');
+    const choices = ['keep', 'bye'];
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    this.decision = choices[randomIndex]; // Stocker la décision dans une variable
+    if (this.decision === 'bye') {
+      this.description = 'Lors du duel, tu dois tout faire pour donner le téléphone à la fin.';
     }
+  }
 
   onSkip() {
     if (this.skipsRemaining > 0) {
