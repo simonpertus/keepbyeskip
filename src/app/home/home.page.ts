@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppUtilsService } from '../services/app-utils.service';
+import { AudioService } from '../services/audio.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +10,15 @@ import { AppUtilsService } from '../services/app-utils.service';
 })
 export class HomePage implements OnInit {
 
-  constructor(private router: Router,private aus: AppUtilsService) { }
+  constructor(private router: Router,private aus: AppUtilsService,private audioService: AudioService) { }
 
   ngOnInit() {
     this.animateLogo();
+    this.audioService.startMusic('main');
+  }
+
+  ionViewWillEnter() {
+    this.audioService.startMusic('main');
   }
 
   animateLogo() {
@@ -63,7 +69,10 @@ export class HomePage implements OnInit {
   }
 
   showRules() {
-    this.router.navigate(['/rules']);
+    this.aus.animateButton("button-rules");
+    setTimeout(() => {
+      this.router.navigate(['/rules']);
+    }, 400);
   }
 
 }

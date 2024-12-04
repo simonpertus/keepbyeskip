@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
 import { AppUtilsService } from 'src/app/services/app-utils.service';
+import { AudioService } from 'src/app/services/audio.service';
 
 @Component({
   selector: 'app-game-decision',
@@ -15,9 +16,11 @@ export class GameDecisionPage {
   public decision: string = 'keep';
   public description: string = 'Lors du duel, tu dois tout faire pour garder le téléphone à la fin.';
 
-  constructor(private router: Router, private aus: AppUtilsService) {}
+  constructor(private router: Router, private aus: AppUtilsService,private audioService: AudioService) {}
 
   ionViewWillEnter () {
+    this.audioService.startMusic('duel');
+
     //console.log('Initialisation de la décision');
     this.maxSkips = this.generateRandomSkips();
     this.skipsRemaining = this.maxSkips;

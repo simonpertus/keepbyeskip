@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppUtilsService } from 'src/app/services/app-utils.service';
+import { AudioService } from 'src/app/services/audio.service';
 import { TwistService } from 'src/app/services/twist.service';
 
 @Component({
@@ -27,9 +28,14 @@ export class GameDuelPage {
   private panChance: number = this.basePanChance;  // Chance actuelle de "PAN"
   private shotsTaken: number = 0;  // Compteur de tirs
 
-  constructor(private router: Router, private aus: AppUtilsService, private route: ActivatedRoute, private twistService: TwistService) { }
+  constructor(private router: Router, private aus: AppUtilsService, private route: ActivatedRoute, private twistService: TwistService
+    ,private audioService: AudioService) { }
+
 
   ionViewWillEnter() {
+
+    this.audioService.startMusic('duel');
+
     this.timeLeft = 3000;
     this.timerRunning = false;
     this.displayTime = '00:00:00';
