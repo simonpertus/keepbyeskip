@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AudioService } from './audio.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class AppUtilsService {
   private twist:any = null;
   private cancelDuel:boolean = false;
 
-  constructor() { }
+  constructor(private audioService: AudioService) { }
 
   setDecision(decision: string) {
     this.decision = decision;
@@ -36,6 +37,8 @@ export class AppUtilsService {
   
   animateButton(buttonId: string) {
     const button = document.getElementById(buttonId);
+    
+    this.audioService.startSound('button');
     if (button) {
       // Ajoute la classe 'active' pour lancer l'animation
       button.classList.add('active');
