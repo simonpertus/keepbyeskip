@@ -11,7 +11,7 @@ export class AudioService {
 
   private button!: HTMLAudioElement;
 
-  private isMusic: boolean = true;
+  private isMusic: boolean = false;
   private isSound: boolean = true;
 
 

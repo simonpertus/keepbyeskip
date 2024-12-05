@@ -2,37 +2,6 @@
     text-align: center;
 }
 
-.card {
-    background-color: white;
-    border-radius: 0px;
-    padding: 40px 10px 10px;
-    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.25);
-    margin: 20px auto 30px;
-    width: 350px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    img {
-        max-width: 300px;
-        margin: auto;
-        transform: rotate(-10deg);
-        margin-bottom: -10px;
-    }
-    p{
-        max-width: 280px;
-        text-align: center;
-        padding-top: 50px;
-        font-size: 1.05em;
-    }
-}
-
-.card.card-bye {
-    background-color: black;
-    p{
-        color:white;
-    }
-}
 .actions {
     display: flex;
     justify-content: space-around;
@@ -63,7 +32,7 @@
     gap: 20px;
     display: flex;
     justify-content: center;
-    padding: 0 30px;
+    padding: 10px 40px;
 
     .button {
         border-radius: 99px;
@@ -92,7 +61,7 @@
 }
 
 img.title-ladecision {
-    max-width: 400px;
+    max-width: 300px;
     width: 100%;
     padding: 0 40px;
 }

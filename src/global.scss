@@ -200,3 +200,94 @@ img{
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
 }
+
+.card {
+  background-color: white;
+  border-radius: 0px;
+  padding: 40px 10px 10px;
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.25);
+  margin: 20px 40px 20px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+      max-width: 230px;
+      margin: auto;
+      transform: rotate(-10deg);
+      margin-bottom: -10px;
+  }
+  p{
+      max-width: 280px;
+      text-align: center;
+      padding-top: 30px;
+      font-size: 14px;
+  }
+}
+
+.card.card-bye {
+  background-color: black;
+  p{
+      color:white;
+  }
+}
+
+div.twist-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+
+  p.twist-reveal{
+      font-size: 16px;
+      text-align: center;
+      margin: 20px auto;
+      padding: 5px 15px 5px 10px;
+      border-radius: 5px;
+  }
+  p.twist-reveal-none{
+      background: #000000;
+      color: white;
+  }
+  p.twist-reveal-all{
+      color: #000000;
+      background: white;
+  }
+  
+  img{
+      max-width: 150px;
+      z-index: 1;
+  }
+  .twist-emoji{
+      position: absolute;
+      z-index: 0;
+      font-size: 70px;
+      margin-top: 46px;
+      margin-right: -180px;
+      transform: rotate(-15deg);
+  }
+  .twist-title{
+      font-family: FrankfurterNormal;
+      z-index: 1;
+      text-transform: uppercase;
+      font-size: 30px;
+      margin-top: -1px;
+      color: white;
+      -webkit-text-stroke: 1.5px #1f1f1f;
+  }
+  .twist-description{
+      color:white;
+      text-align: center;
+      max-width: 350px;
+      font-size: 16px;
+      margin-top: 0;
+  }
+
+}
+
+img.title-page-game {
+  max-width: 300px;
+  width: 100%;
+  padding: 0 40px;
+}
