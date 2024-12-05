@@ -17,7 +17,7 @@ export class GameDuelPage {
   public oneTime: boolean = false;
 
   // Variables pour le twist Compte à rebours
-  public timeLeft: number = 3000; // 30 secondes en centièmes de seconde
+  public timeLeft: number = 2900; // 30 secondes en centièmes de seconde
   public timerRunning: boolean = false;
   public displayTime: string = '00:00:00'; // Format affiché (MM:SS:CC)
   private interval: any;
@@ -72,6 +72,8 @@ export class GameDuelPage {
   // Méthode pour démarrer le chrono
   startTimer() {
     this.aus.animateButton('button-start-timer');
+    this.audioService.startSound('chrono');
+    this.audioService.stopMusic();
     setTimeout(() => {
       this.timerRunning = true;
       this.showReveal = true; // Afficher le bouton Révéler quand le temps est écoulé
@@ -81,6 +83,7 @@ export class GameDuelPage {
           this.updateDisplayTime();
         } else {
           this.timerRunning = false;
+          this.audioService.startSound('alert');
           clearInterval(this.interval);
 
         }
@@ -103,7 +106,7 @@ export class GameDuelPage {
   }
 
   shoot() {
-    this.aus.animateButton('button-shoot');
+    this.aus.animateButton('button-shoot',false);
     setTimeout(() => {
       this.shotsTaken++;  // Incrémenter le nombre de tirs
       this.oneTime = true;
@@ -113,12 +116,15 @@ export class GameDuelPage {
       if (randomChance <= this.panChance) {
         this.bullet = true;  // Tir fatal
         this.showReveal = true;
+        this.audioService.startSound('pan');
+      }else{
+        this.audioService.startSound('clic');
       }
       // Tous les 3 tirs, augmenter la probabilité de "PAN" de 10 %
       if (this.shotsTaken % 3 === 0) {
         this.increasePanChance();
       }
-    }, 400);
+    }, 200);
   }
 
   // Augmente la probabilité de "PAN" de 10 %

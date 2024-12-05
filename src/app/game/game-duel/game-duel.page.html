@@ -13,7 +13,7 @@
       <!-- Afficher le twist uniquement s'il y en a un -->
       <div class="twist-card" *ngIf="twist">
         <p class="twist-reveal twist-reveal-all" *ngIf="twist.revealTwist">📣 Lis le twist à voix haute</p>
-        <p class="twist-reveal twist-reveal-none" *ngIf="!twist.revealTwist">🤫 Ne lis surtout pas le twist à voix haute
+        <p class="twist-reveal twist-reveal-none" *ngIf="!twist.revealTwist">🤫 Ne lis pas le twist à voix haute
         </p>
         <img src="assets/title/title-twist.png">
         <div class="twist-emoji">{{ twist.emoji }}</div>
@@ -45,6 +45,9 @@
           </button>
           <div class="compte-a-rebours"  *ngIf="twist && twist.id==='compte-a-rebours' && timerRunning">
             <p>{{  displayTime }}</p>
+          </div>
+          <div class="compte-a-rebours"  *ngIf="twist && twist.id==='compte-a-rebours' && !timerRunning  && showReveal">
+            <p>Temps écoulé</p>
           </div>
           <div *ngIf="twist && twist.id==='lies-jusqua-la-mort'" id="button-end" 
           class="button button-reveal custom-button animated-button" (click)="goNewTurn()">

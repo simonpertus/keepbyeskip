@@ -16,7 +16,7 @@
     margin-right: 7px;
     margin-left: 7px;
 
-    img{
+    img {
         width: 100px;
     }
 
@@ -42,7 +42,7 @@
         flex-direction: column;
         justify-content: center;
     }
-       .button-reveal {
+    .button-reveal {
         background-color: #41b9ff;
         img {
             max-height: 40px;
@@ -53,31 +53,30 @@
     }
 }
 
-
-
-.compte-a-rebours p{
+.compte-a-rebours p {
     color: #ffd600;
-font-size: 32px;
-font-family: monospace;
-margin: 0;
-margin-top: -40px;
+    font-size: 26px;
+    font-family: monospace;
+    margin: 0;
+    margin-top: -30px;
 }
+
 div.actions-game:has(.roulette-russe),
-div.actions-game:has(.compte-a-rebours){
+div.actions-game:has(.compte-a-rebours) {
     flex-direction: column;
 }
 div.roulette-russe,
-div.compte-a-rebours{
+div.compte-a-rebours {
     width: 100%;
     text-align: center;
 }
-div.roulette-russe div{
-    margin:0;
+div.roulette-russe div {
+    margin: 0;
     height: 200px;
     display: flex;
     justify-content: center;
 }
-div.roulette-russe div img{
+div.roulette-russe div img {
     /*max-width: 200px;*/
     height: auto;
 }

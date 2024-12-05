@@ -6,8 +6,8 @@ import { AudioService } from './audio.service';
 })
 export class AppUtilsService {
   private decision: string = 'keep';
-  private twist:any = null;
-  private cancelDuel:boolean = false;
+  private twist: any = null;
+  private cancelDuel: boolean = false;
 
   constructor(private audioService: AudioService) { }
 
@@ -34,11 +34,12 @@ export class AppUtilsService {
   getTwist(): any {
     return this.twist;
   }
-  
-  animateButton(buttonId: string) {
+
+  animateButton(buttonId: string, sound: boolean = true) {
     const button = document.getElementById(buttonId);
-    
-    this.audioService.startSound('button');
+    if (sound){
+      this.audioService.startSound('button');
+    }
     if (button) {
       // Ajoute la classe 'active' pour lancer l'animation
       button.classList.add('active');
