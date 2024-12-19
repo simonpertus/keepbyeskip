@@ -146,11 +146,6 @@ html.md{
 }
 
 
-/*.custom-button {
-  animation: pulse 6s infinite;
-}
-*/
-
 .page-enter {
   animation: slideInRight 0.5s forwards;
 }
@@ -290,4 +285,12 @@ img.title-page-game {
   max-width: 300px;
   width: 100%;
   padding: 0 40px;
+}
+
+#button-end{
+  padding-top: 13px;
+  padding-bottom: 7px;
+}
+#button-newcard{
+  padding-bottom: 6px;
 }
