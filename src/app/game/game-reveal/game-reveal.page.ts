@@ -18,7 +18,7 @@ export class GameRevealPage {
   constructor(private router: Router, private aus: AppUtilsService, private route: ActivatedRoute, private twistService: TwistService,private audioService: AudioService) { }
 
   ionViewWillEnter() {
-    this.audioService.startMusic('reveal');
+    this.audioService.startMusic('game');
 
     // Récupérer la décision passée
     this.decision = this.aus.getDecision();

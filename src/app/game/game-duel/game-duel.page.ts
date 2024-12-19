@@ -34,7 +34,7 @@ export class GameDuelPage {
 
   ionViewWillEnter() {
 
-    this.audioService.startMusic('duel');
+    this.audioService.startMusic('game');
 
     this.timeLeft = 3000;
     this.timerRunning = false;

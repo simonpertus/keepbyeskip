@@ -19,7 +19,7 @@ export class GameDecisionPage {
   constructor(private router: Router, private aus: AppUtilsService,private audioService: AudioService) {}
 
   ionViewWillEnter () {
-    this.audioService.startMusic('duel');
+    this.audioService.startMusic('game');
 
     //console.log('Initialisation de la décision');
     this.maxSkips = this.generateRandomSkips();

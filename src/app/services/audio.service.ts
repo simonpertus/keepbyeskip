@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AudioService {
   private main!: HTMLAudioElement;
+  private game!: HTMLAudioElement;
   private duel!: HTMLAudioElement;
   private reveal!: HTMLAudioElement;
 
@@ -23,7 +24,12 @@ export class AudioService {
     // Initialiser la musique
     this.main = new Audio('assets/sounds/musics/main.mp3');
     this.main.loop = true; // Boucle la musique
-    this.main.volume = 0.3; // Ajuste le volume
+    this.main.volume = 0.2; // Ajuste le volume
+
+    // Initialiser la musique
+    this.game = new Audio('assets/sounds/musics/game.wav');
+    this.game.loop = true; // Boucle la musique
+    this.game.volume = 0.1; // Ajuste le volume
 
     // Initialiser la musique
     this.duel = new Audio('assets/sounds/musics/duel.mp3');
@@ -43,7 +49,7 @@ export class AudioService {
     this.pan.loop = false; // Boucle la musique
     this.chrono = new Audio('assets/sounds/chrono.wav');
     this.chrono.loop = false; // Boucle la musique
-    this.chrono.volume = 1.2;
+    this.chrono.volume = 1;
     this.alert = new Audio('assets/sounds/alert.wav');
     this.alert.volume = 0.5;
     this.alert.loop = false; // Boucle la musique  
@@ -53,25 +59,34 @@ export class AudioService {
     if (this.isMusic) {
       switch (title) {
         case 'main':
-          this.duel.pause();
-          this.duel.currentTime = 0;
-          this.reveal.pause();
-          this.reveal.currentTime = 17;
+          this.game.pause();
+          this.game.currentTime = 0;
           this.main.play();
           break;
-        case 'duel':
+        case 'game':
           this.main.pause();
           this.main.currentTime = 0;
-          this.reveal.pause();
-          this.reveal.currentTime = 17;
-          this.duel.play();
+          this.game.play();
           break;
-        case 'reveal':
+        /*  case 'duel':
+            this.main.pause();
+            this.main.currentTime = 0;
+            this.reveal.pause();
+            this.reveal.currentTime = 17;
+            this.duel.play();
+            break;
+          case 'reveal':
+            this.main.pause();
+            this.main.currentTime = 0;
+            this.duel.pause();
+            this.duel.currentTime = 0;
+            this.reveal.play();
+            break;*/
+        default:
           this.main.pause();
           this.main.currentTime = 0;
-          this.duel.pause();
-          this.duel.currentTime = 0;
-          this.reveal.play();
+          this.game.pause();
+          this.game.currentTime = 0;
           break;
       }
     }
@@ -84,6 +99,10 @@ export class AudioService {
           this.main.pause();
           this.main.currentTime = 0;
           break;
+        case 'game':
+          this.game.pause();
+          this.game.currentTime = 0;
+          break;
         case 'duel':
           this.duel.pause();
           this.duel.currentTime = 0;
@@ -95,6 +114,8 @@ export class AudioService {
         default:
           this.main.pause();
           this.main.currentTime = 0;
+          this.game.pause();
+          this.game.currentTime = 0;
           this.duel.pause();
           this.duel.currentTime = 0;
           this.reveal.pause();
@@ -103,7 +124,7 @@ export class AudioService {
     }
   }
 
-  startSound(title:string=''){
+  startSound(title: string = '') {
     if (this.isSound) {
       switch (title) {
         case 'button':
