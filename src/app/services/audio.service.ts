@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { App } from '@capacitor/app'; // Importer le plugin Capacitor App
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +9,7 @@ export class AudioService {
   private duel!: HTMLAudioElement;
   private reveal!: HTMLAudioElement;
 
+
   private button!: HTMLAudioElement;
   private clic!: HTMLAudioElement;
   private pan!: HTMLAudioElement;
@@ -19,8 +19,6 @@ export class AudioService {
   private isMusic: boolean = true;
   private isSound: boolean = true;
 
-  private currentMusic: string = ''; // Titre de la musique en cours
-  private currentTime: number = 0; // Position de lecture de la musique
 
   constructor() {
     // Initialiser la musique
@@ -33,71 +31,28 @@ export class AudioService {
     this.game.loop = true; // Boucle la musique
     this.game.volume = 0.1; // Ajuste le volume
 
+    // Initialiser la musique
     this.duel = new Audio('assets/sounds/musics/duel.mp3');
-    this.duel.loop = true;
-    this.duel.volume = 0.1;
+    this.duel.loop = true; // Boucle la musique
+    this.duel.volume = 0.5; // Ajuste le volume
 
+    // Initialiser la musique
     this.reveal = new Audio('assets/sounds/musics/reveal.wav');
-    this.reveal.loop = true;
-    this.reveal.volume = 0.4;
+    this.reveal.loop = true; // Boucle la musique
+    this.reveal.volume = 0.4; // Ajuste le volume
 
     this.button = new Audio('assets/sounds/button.wav');
+    this.button.loop = false; // Boucle la musique
     this.clic = new Audio('assets/sounds/clic.wav');
+    this.clic.loop = false; // Boucle la musique
     this.pan = new Audio('assets/sounds/pan.wav');
+    this.pan.loop = false; // Boucle la musique
     this.chrono = new Audio('assets/sounds/chrono.wav');
     this.chrono.loop = false; // Boucle la musique
-    this.chrono.volume = 1.2;
+    this.chrono.volume = 1;
     this.alert = new Audio('assets/sounds/alert.wav');
     this.alert.volume = 0.5;
-
-    // Écouter les changements d'état de l'application (passage en arrière-plan et retour au premier plan)
-    App.addListener('appStateChange', (state) => {
-      if (!state.isActive) {
-        // Sauvegarder la musique en cours et sa position
-        this.saveCurrentMusic();
-        // Arrêter la musique lorsque l'application passe en arrière-plan
-        this.stopMusic();
-      } else {
-        // Reprendre la musique lorsque l'app revient au premier plan
-        this.resumeMusic();
-      }
-    });
-  }
-
-  private saveCurrentMusic() {
-    // Enregistrer la musique en cours et la position actuelle
-    if (this.main.paused === false) {
-      this.currentMusic = 'main';
-      this.currentTime = this.main.currentTime;
-    } else if (this.duel.paused === false) {
-      this.currentMusic = 'duel';
-      this.currentTime = this.duel.currentTime;
-    } else if (this.reveal.paused === false) {
-      this.currentMusic = 'reveal';
-      this.currentTime = this.reveal.currentTime;
-    }
-  }
-
-  private resumeMusic() {
-    // Reprendre la musique à la position enregistrée
-    if (this.currentMusic) {
-      this.stopMusic(); // Arrêter la musique en cours avant de la reprendre
-
-      switch (this.currentMusic) {
-        case 'main':
-          this.main.currentTime = this.currentTime;
-          this.main.play();
-          break;
-        case 'duel':
-          this.duel.currentTime = this.currentTime;
-          this.duel.play();
-          break;
-        case 'reveal':
-          this.reveal.currentTime = this.currentTime;
-          this.reveal.play();
-          break;
-      }
-    }
+    this.alert.loop = false; // Boucle la musique  
   }
 
   startMusic(title: string = '') {
@@ -107,21 +62,31 @@ export class AudioService {
           this.game.pause();
           this.game.currentTime = 0;
           this.main.play();
-          this.currentMusic = 'main'; // Enregistrer la musique en cours
           break;
-        case 'duel':
+        case 'game':
           this.main.pause();
           this.main.currentTime = 0;
-          this.reveal.pause();
-          this.reveal.currentTime = 17;
-          this.duel.play();
+          this.game.play();
           break;
-        case 'reveal':
+        /*  case 'duel':
+            this.main.pause();
+            this.main.currentTime = 0;
+            this.reveal.pause();
+            this.reveal.currentTime = 17;
+            this.duel.play();
+            break;
+          case 'reveal':
+            this.main.pause();
+            this.main.currentTime = 0;
+            this.duel.pause();
+            this.duel.currentTime = 0;
+            this.reveal.play();
+            break;*/
+        default:
           this.main.pause();
           this.main.currentTime = 0;
-          this.duel.pause();
-          this.duel.currentTime = 0;
-          this.reveal.play();
+          this.game.pause();
+          this.game.currentTime = 0;
           break;
       }
     }
@@ -180,4 +145,31 @@ export class AudioService {
       }
     }
   }
+  stopSound(title: string = '') {
+    if (this.isSound) {
+      switch (title) {
+        case 'button':
+          this.button.pause();
+          break;
+        case 'clic':
+          this.clic.pause();
+          break;
+        case 'pan':
+          this.pan.pause();
+          break;
+        case 'chrono':
+          this.chrono.currentTime = 0;
+          this.chrono.pause();
+          break;
+        case 'alert':
+          this.alert.pause();
+          break;
+      }
+    }
+  }
+
+  isChronoPaused() {
+    return this.chrono.paused;
+  }
+
 }

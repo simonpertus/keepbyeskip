@@ -31,7 +31,7 @@
         </p>
       </div>
       
-      <div class="actions-game">
+      <div class="actions-game {{twist && twist.id==='la-paix' ? 'max-width' :''}}"> 
         <div class="roulette-russe" *ngIf="twist && twist.id==='roulette-russe'">
           <div *ngIf="!oneTime"></div>
           <div *ngIf="bullet && oneTime"><img src="assets/img/rs-pan.png"></div>

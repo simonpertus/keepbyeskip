@@ -29,7 +29,7 @@ export class GameDuelPage {
   private shotsTaken: number = 0;  // Compteur de tirs
 
   constructor(private router: Router, private aus: AppUtilsService, private route: ActivatedRoute, private twistService: TwistService
-    ,private audioService: AudioService) { }
+    , private audioService: AudioService) { }
 
 
   ionViewWillEnter() {
@@ -54,7 +54,7 @@ export class GameDuelPage {
     }
 
     // Obtenir le twist
-    this.twist = { ...this.twistService.getRandomTwist() };
+    this.twist = { ...this.twistService.getRandomTwist('la-paix') };
     if (this.twist.id == undefined) {
       this.twist = null;
     }
@@ -83,7 +83,7 @@ export class GameDuelPage {
           this.updateDisplayTime();
         } else {
           this.timerRunning = false;
-          this.audioService.startSound('alert');
+            this.audioService.startSound('alert');
           clearInterval(this.interval);
 
         }
@@ -106,7 +106,7 @@ export class GameDuelPage {
   }
 
   shoot() {
-    this.aus.animateButton('button-shoot',false);
+    this.aus.animateButton('button-shoot', false);
     setTimeout(() => {
       this.shotsTaken++;  // Incrémenter le nombre de tirs
       this.oneTime = true;
@@ -117,7 +117,7 @@ export class GameDuelPage {
         this.bullet = true;  // Tir fatal
         this.showReveal = true;
         this.audioService.startSound('pan');
-      }else{
+      } else {
         this.audioService.startSound('clic');
       }
       // Tous les 3 tirs, augmenter la probabilité de "PAN" de 10 %
@@ -184,6 +184,8 @@ export class GameDuelPage {
 
   goReveal() {
     this.aus.animateButton('button-reveal');
+    this.audioService.stopSound('chrono');
+    clearInterval(this.interval);
     setTimeout(() => {
       this.router.navigate(['/game-reveal']);
     }, 400);
